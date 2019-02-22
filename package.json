@@ -2,9 +2,6 @@
   "name": "idb-connector",
   "version": "1.1.8",
   "description": "A Node.js DB2 driver for IBM i",
-  "os": [
-    "aix"
-  ],
   "main": "lib/db2a.js",
   "directories": {
     "lib": "lib",
