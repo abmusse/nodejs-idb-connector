@@ -310,6 +310,9 @@ Napi::Value DbConn::Close(const Napi::CallbackInfo& info) {
   SQLRETURN sqlReturnCode = -1;
 
   if(this->connAllocated) {
+    if (this->connected) {
+      this->Disconnect(info);
+    }
     DEBUG(this, "SQLFreeConnect: conn obj [%p] handler [%d]\n", this, this->connh);
     //Doc https://www.ibm.com/support/knowledgecenter/en/ssw_ibm_i_73/cli/rzadpfnfconn.htm
     sqlReturnCode = SQLFreeConnect(this->connh); //SQLHDBC hdbc -Connection Handle
