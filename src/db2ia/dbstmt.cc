@@ -250,6 +250,8 @@ class ExecAsyncWorker : public Napi::AsyncWorker {
       }
       // Grabs data from SQL and puts it in DbStmt result array. Converted to Napi values in ExecAsyncAfter (need environment var)
       dbStatementObject->fetchData();
+      sqlReturnCode = SQLFreeStmt(dbStatementObject->stmth, SQL_CLOSE);
+      sqlReturnCode = SQLFreeStmt(dbStatementObject->stmth, SQL_UNBIND);
     }
 
     void OnError(const Napi::Error& e){
